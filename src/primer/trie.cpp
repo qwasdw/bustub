@@ -15,6 +15,9 @@ auto Trie::Get(std::string_view key) const -> const T * {
   // Otherwise, return the value.
 
   auto node = root_;
+  if (node == nullptr) {
+    return nullptr;
+  }
   for (char c : key) {
     auto next = node->children_.find(c);
     if (next != node->children_.end()) {
@@ -134,7 +137,8 @@ auto Trie::Remove(std::string_view key) const -> Trie {
 
     // key not exist
     if (st.size() - 1 != key.size()) {
-      return *this;
+      return Trie(root_);
+      ;
     }
 
     // remove null node

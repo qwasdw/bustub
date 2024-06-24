@@ -41,8 +41,8 @@ TEST(TrieStoreTest, GuardTest) {
 
   store.Remove("233");
   {
-    auto guard = store.Get<std::string>("233");
-    ASSERT_EQ(guard, std::nullopt);
+    auto guard2 = store.Get<std::string>("233");
+    ASSERT_EQ(guard2, std::nullopt);
   }
 
   ASSERT_EQ(**guard, "2333");
