@@ -144,7 +144,6 @@ auto BufferPoolManager::FlushPage(page_id_t page_id) -> bool {
   auto f = p.get_future();
   disk_scheduler_->Schedule({true, pages_[frame_id].data_, page_id, std::move(p)});
   f.get();
-  pages_[frame_id].ResetMemory();
   pages_[frame_id].is_dirty_ = false;
   return true;
 }
@@ -163,7 +162,6 @@ void BufferPoolManager::FlushAllPages() {
   i = 0;
   for (auto it = page_table_.begin(); it != page_table_.end(); ++it, ++i) {
     f[i].get();
-    pages_[it->first].ResetMemory();
     pages_[it->first].is_dirty_ = false;
   }
 }
