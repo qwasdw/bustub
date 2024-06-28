@@ -138,7 +138,6 @@ auto Trie::Remove(std::string_view key) const -> Trie {
     // key not exist
     if (st.size() - 1 != key.size()) {
       return Trie(root_);
-      ;
     }
 
     // remove null node
