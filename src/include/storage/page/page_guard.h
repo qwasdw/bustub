@@ -83,6 +83,8 @@ class BasicPageGuard {
    */
   auto UpgradeWrite() -> WritePageGuard;
 
+  void Reset();
+
   auto PageId() -> page_id_t { return page_->GetPageId(); }
 
   auto GetData() -> const char * { return page_->GetData(); }
